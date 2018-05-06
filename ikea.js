@@ -18,29 +18,6 @@
         }
     };
 
-    function mapAction(path){
-        switch (path) {
-            //homepage
-            case '/':
-                actionIndex();
-                break;
-            //product page
-            case (path.match(/\/products\/.+\/.+-\d+/) || {}).input:
-                actionProduct();
-                break;
-            //shopping cart page
-            case (path.match(/\/order\/shoppingbag/) || {}).input:
-                actionCart();
-                break;
-            //search page
-            case (path.match(/\/search\//) || {}).input:
-                actionSearch();
-                break;
-            default:
-                break;
-        }
-    }
-
     function getProductName(product){
         const name = product.querySelector(selectors.product.name);
         return name ? name.textContent.trim() : null;
@@ -102,6 +79,29 @@
         const key = url.searchParams.get('k');
         console.log(key);
         trackAddToCart();
+    }
+
+    function mapAction(path){
+        switch (path) {
+            //homepage
+            case '/':
+                actionIndex();
+                break;
+            //product page
+            case (path.match(/\/products\/.+\/.+-\d+/) || {}).input:
+                actionProduct();
+                break;
+            //shopping cart page
+            case (path.match(/\/order\/shoppingbag/) || {}).input:
+                actionCart();
+                break;
+            //search page
+            case (path.match(/\/search\//) || {}).input:
+                actionSearch();
+                break;
+            default:
+                break;
+        }
     }
 
     mapAction(url.pathname);
